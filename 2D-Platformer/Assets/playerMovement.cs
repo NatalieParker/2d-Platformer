@@ -2,18 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerMovement : MonoBehaviour
-{
+public class playerMovement : MonoBehaviour{
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start(){
         Debug.Log("Hello World");
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update(){
+        if (Input.GetKeyDown("space")){
+            GetComponent<Rigidbody2D>().velocity = new Vector3(0,7,0);
+        }
     }
-    
+
 }
