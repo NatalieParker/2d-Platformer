@@ -12,6 +12,9 @@ public class playerMovement : MonoBehaviour{
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float jumpForce = 14f;
 
+    private enum MoveState{ idle, running, jumping, falling }
+
+
     void Start(){
         Debug.Log("Hello World");
         rb = GetComponent<Rigidbody2D>();
@@ -33,15 +36,22 @@ public class playerMovement : MonoBehaviour{
     }
 
     private void UpdateAnim(){
+        MoveState state;
         if (moveX > 0f){
-            anim.SetBool("Running", true);
+            state = MoveState.running;
             sprite.flipX = false;
         } else if (moveX < 0){
-            anim.SetBool("Running", true);
+            state = MoveState.running;
             sprite.flipX = true;
         } else {
-            anim.SetBool("Running", false);
+            state = MoveState.idle;
         }
+        if (rb.velocity.y > 0.01f){
+            state = MoveState.jumping;
+        } else if (rb.velocity.y < -0.01f){
+            state = MoveState.falling;
+        }
+        anim.SetInteger("State", (int)state);
     }
 
 }
