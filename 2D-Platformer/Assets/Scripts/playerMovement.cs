@@ -11,7 +11,7 @@ public class playerMovement : MonoBehaviour{
     private SpriteRenderer sprite;
 
     [SerializeField] private float moveSpeed = 7f;
-    [SerializeField] private float jumpForce = 14f;
+    [SerializeField] private float jumpForce = 20f;
     [SerializeField] private LayerMask jumpableGround;
 
     private enum MoveState{ idle, running, jumping, falling }
